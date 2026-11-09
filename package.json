@@ -1,0 +1,69 @@
+{
+  "name": "@lyeve-labs/ui-kit-vue",
+  "version": "0.0.0",
+  "description": "Vue 3 components that render the LyEve ui-kit's markup and classes, styled by its compiled stylesheet.",
+  "license": "MIT",
+  "author": "LyEve Labs <hello@lyeve.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lyeve-labs/ui-kit-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lyeve-labs/ui-kit-vue/issues"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "components",
+    "ui-kit",
+    "design-system",
+    "lyeve"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "packageManager": "pnpm@11.25.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "vite build && vue-tsc -p tsconfig.build.json && node scripts/copy-site-css.mjs && publint",
+    "check": "vue-tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./site.css": "./dist/site.css",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@lucide/svelte": "0.511.0",
+    "@lyeve-labs/ui-kit": "0.56.0",
+    "@sveltejs/vite-plugin-svelte": "5.1.1",
+    "@types/node": "24.19.2",
+    "@vitejs/plugin-vue": "6.0.10",
+    "parse5": "8.0.0",
+    "publint": "0.3.25",
+    "svelte": "5.57.2",
+    "typescript": "5.9.3",
+    "vite": "6.4.5",
+    "vitest": "4.1.12",
+    "vue": "3.5.45",
+    "vue-tsc": "3.3.14"
+  }
+}
