@@ -1,6 +1,6 @@
 {
   "name": "@lyeve-labs/ui-kit-vue",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Vue 3 components that render the LyEve ui-kit's markup and classes, styled by its compiled stylesheet.",
   "license": "MIT",
   "author": "LyEve Labs <hello@lyeve.com>",
