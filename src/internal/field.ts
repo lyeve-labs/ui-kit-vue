@@ -18,30 +18,36 @@ export const FIELD_ERROR = 'text-xs text-danger';
 
 const CONTROL_DEPTH = 'inset-shadow-well';
 
-const CONTROL_FOCUS_RING =
-  'focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand/35';
+/**
+ * The focus mark of a field in error, whose red border cannot turn the focus
+ * color, so a 1px inset ring repeats the border while it has focus. Any other
+ * field shows focus by its border alone.
+ */
+const CONTROL_FOCUS_RING = 'focus-visible:ring-1 focus-visible:ring-inset';
 
 /** Everything a single-line control needs except its border color. */
 export const CONTROL_BASE =
   'w-full h-control rounded-lg bg-surface-2 border px-3 text-sm text-fg ' +
   'placeholder:text-faint transition-colors outline-none ' +
-  `${CONTROL_DEPTH} ${CONTROL_FOCUS_RING} ` +
+  `${CONTROL_DEPTH} ` +
   'disabled:opacity-50 disabled:cursor-not-allowed';
 
 /** As CONTROL_BASE, for controls whose height is driven by their content. */
 export const CONTROL_MULTILINE =
   'w-full min-h-control rounded-lg bg-surface-2 border px-3 py-2 text-sm text-fg ' +
   'placeholder:text-faint transition-colors outline-none ' +
-  `${CONTROL_DEPTH} ${CONTROL_FOCUS_RING} ` +
+  `${CONTROL_DEPTH} ` +
   'disabled:opacity-50 disabled:cursor-not-allowed';
 
 /**
- * The border a control carries at rest and on focus. The kit also paints a
- * suggested value violet, which needs its form assistant, so that branch is
- * not ported.
+ * The border a control carries at rest, under the pointer and on focus. The
+ * kit also paints a suggested value violet, which needs its form assistant, so
+ * that branch is not ported.
  */
 export function controlBorder(error: boolean): string {
-  return error ? 'border-danger focus:border-danger' : 'border-line-strong focus:border-brand';
+  return error
+    ? `border-danger focus:border-danger ${CONTROL_FOCUS_RING} focus-visible:ring-danger`
+    : 'border-line hover:border-line-strong focus:border-focus';
 }
 
 /**
