@@ -28,8 +28,11 @@ const WRAP_CARD = 'flex select-none items-start gap-2.5 rounded-lg border p-3 tr
 export function choiceWrap(variant: ChoiceVariant, checked: boolean, disabled: boolean): string {
   const cursor = disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer';
   if (variant === 'card') {
-    const paint = checked ? 'border-brand bg-brand/8' : 'border-line-strong bg-surface-2';
-    return `${WRAP_CARD} ${paint} ${cursor}`;
+    // A selected card is tinted with no brand edge, because the filled box
+    // inside it is the mark. The input covers the card, so the hover is a peer's.
+    const paint = checked ? 'border-line bg-brand/8' : 'border-line bg-surface-2';
+    const hover = disabled ? '' : ' peer-hover:border-line-strong';
+    return `${WRAP_CARD} ${paint}${hover} ${cursor}`;
   }
   return `${WRAP_INLINE} ${cursor}`;
 }
@@ -42,11 +45,14 @@ const BOX_BASE = 'pointer-events-none flex shrink-0 items-center justify-center 
 
 /** The focus ring, outside every checked branch so choosing an option keeps it. */
 export const CHOICE_FOCUS =
-  'peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-brand peer-focus-visible:outline-offset-2';
+  'peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-focus peer-focus-visible:outline-offset-2';
+
+/** The edge of an empty box, which firms under the pointer unless the input is disabled. */
+const CHOICE_EDGE = 'border-line-strong/60 bg-surface-2 peer-enabled:peer-hover:border-line-strong';
 
 /** The painted box. A part-checked box paints exactly what a checked one paints. */
 export function checkboxBox(size: ChoiceSize, checked: boolean, mixed: boolean): string {
-  const paint = checked || mixed ? 'border-brand bg-brand text-ink' : 'border-line-strong bg-surface-2';
+  const paint = checked || mixed ? 'border-brand bg-brand text-ink' : CHOICE_EDGE;
   return `${BOX_BASE} ${CHOICE_SQUARE[size]} rounded-xs border ${paint} ${CHOICE_FOCUS}`;
 }
 

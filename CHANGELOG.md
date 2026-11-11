@@ -10,5 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Vue 3 ports of twenty ui-kit components a page for visitors draws with,
-  each holding the markup of its Svelte original in ui-kit 0.56.0.
+  each holding the markup of its Svelte original in ui-kit 0.60.1. A text
+  field shows keyboard focus by its own border alone, and a field in error
+  keeps its red border with a thin inset ring.
 
